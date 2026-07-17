@@ -11,9 +11,11 @@ English | [中文](README_zh.md) | [한국어](README_ko.md) | [日本語](READM
 [![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15186407.svg)](https://doi.org/10.5281/zenodo.15186407)
 
-# 👋 OpenManus
+# 🦚 Keshav
 
-Manus is incredible, but OpenManus can achieve any idea without an *Invite Code* 🛫!
+Keshav is your personal AI companion inspired by the wisdom, playfulness, and calm nature of Lord Krishna.
+He can code, browse, automate tasks, solve problems, and chat naturally in both Hindi and English.
+Unlike a traditional assistant, Keshav feels like a knowledgeable friend—sometimes witty, sometimes teasing, but always ready to help.
 
 Our team members [@Xinbin Liang](https://github.com/mannaandpoem) and [@Jinyu Xiang](https://github.com/XiangJinyu) (core authors), along with [@Zhaoyang Yu](https://github.com/MoshiQAQ), [@Jiayi Zhang](https://github.com/didiforgithub), and [@Sirui Hong](https://github.com/stellaHSR), we are from [@MetaGPT](https://github.com/geekan/MetaGPT). The prototype is launched within 3 hours and we are keeping building!
 

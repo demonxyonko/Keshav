@@ -22,7 +22,7 @@ async def main():
             logger.warning("Empty prompt provided.")
             return
 
-        logger.warning("Processing your request...")
+        logger.warning("🦚 Keshav is thinking...")
         await agent.run(prompt)
         logger.info("Request processing completed.")
     except KeyboardInterrupt:

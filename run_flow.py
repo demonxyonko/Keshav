@@ -15,7 +15,7 @@ async def run_flow():
     if config.run_flow_config.use_data_analysis_agent:
         agents["data_analysis"] = DataAnalysis()
     try:
-        prompt = input("Enter your prompt: ")
+        prompt = input("🙏 Ask Keshav anything: ")
 
         if prompt.strip().isspace() or not prompt:
             logger.warning("Empty prompt provided.")

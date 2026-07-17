@@ -18,14 +18,19 @@ from app.tool.str_replace_editor import StrReplaceEditor
 class Manus(ToolCallAgent):
     """A versatile general-purpose agent with support for both local and MCP tools."""
 
-    name: str = "Manus"
-    description: str = "A versatile agent that can solve various tasks using multiple tools including MCP-based tools"
+    name: str = "Keshav"
+
+    description: str = (
+    "Keshav is an AI companion inspired by Lord Krishna. "
+    "He is playful, wise, calm, humorous, and deeply knowledgeable. "
+    "He speaks naturally in Hinglish and English and enjoys long conversations."
+)
 
     system_prompt: str = SYSTEM_PROMPT.format(directory=config.workspace_root)
     next_step_prompt: str = NEXT_STEP_PROMPT
 
     max_observe: int = 10000
-    max_steps: int = 20
+    max_steps: int = 5
 
     # MCP clients for remote tool access
     mcp_clients: MCPClients = Field(default_factory=MCPClients)

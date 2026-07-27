@@ -146,16 +146,8 @@ class BaseAgent(BaseModel, ABC):
 
                 results.append(f"Step {self.current_step}: {step_result}")
 
-# Auto-stop if the assistant already answered and no tool is needed.
-                if self.memory.messages:
-                    last = self.memory.messages[-1]
-                if last.role == "assistant" and last.content:
-                     logger.info("✅ Final answer detected. Ending conversation.")
-                     self.state = AgentState.FINISHED
-                break
-
-                if self.current_step >= self.max_steps:
-                  self.current_step = 0
+            if self.current_step >= self.max_steps:
+                self.current_step = 0
                 self.state = AgentState.IDLE
                 results.append(f"Terminated: Reached max steps ({self.max_steps})")
         await SANDBOX_CLIENT.cleanup()

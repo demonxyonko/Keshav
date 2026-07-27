@@ -5,14 +5,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="openmanus",
+    name="Keshav",
     version="0.1.0",
-    author="mannaandpoem and OpenManus Team",
-    author_email="mannaandpoem@gmail.com",
-    description="A versatile agent that can solve various tasks using multiple tools",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/FoundationAgents/OpenManus",
+    author="Ricky",
+    description="A local-first desktop AI assistant with chat, vision, tools, and live voice",
+    url="https://github.com/demonxyonko/Keshav",
     packages=find_packages(),
     install_requires=[
         "pydantic~=2.10.4",
@@ -38,12 +35,12 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        "Operating System :: Microsoft :: Windows",
     ],
     python_requires=">=3.12",
     entry_points={
         "console_scripts": [
-            "openmanus=main:main",
+            "keshav=main:main",
         ],
     },
 )

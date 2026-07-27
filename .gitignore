@@ -200,3 +200,19 @@ cython_debug/
 
 # node
 node_modules
+
+# Local secret backups
+.env.*
+!.env.example
+
+# Local development backups
+*_before_*.py
+*_stable_*.py
+attachment_memory_update/
+document_update/
+scanned_pdf_update/
+spreadsheet_update/
+
+# Local Whisper.cpp binaries
+tools/whispercpp/
+tools/whispercpp.zip

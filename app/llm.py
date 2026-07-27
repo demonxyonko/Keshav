@@ -39,7 +39,38 @@ MULTIMODAL_MODELS = [
     "claude-3-opus-20240229",
     "claude-3-sonnet-20240229",
     "claude-3-haiku-20240307",
+    "qwen3-vl",
+    "qwen3-vl:2b",
+    "qwen3-vl:4b",
+    "qwen3-vl:8b",
+    "qwen3-vl:30b",
+    "qwen3-vl:32b",
 ]
+
+MULTIMODAL_MODEL_MARKERS = (
+    "qwen3-vl",
+    "qwen2.5-vl",
+    "llava",
+    "bakllava",
+    "gemma3",
+    "minicpm-v",
+)
+
+
+def model_supports_images(model_name: str) -> bool:
+    """Return True for known image-capable models."""
+    normalized = (model_name or "").strip().lower()
+
+    return (
+        normalized in {
+            model.lower()
+            for model in MULTIMODAL_MODELS
+        }
+        or any(
+            marker in normalized
+            for marker in MULTIMODAL_MODEL_MARKERS
+        )
+    )
 
 
 class TokenCounter:
@@ -385,7 +416,7 @@ class LLM:
         """
         try:
             # Check if the model supports images
-            supports_images = self.model in MULTIMODAL_MODELS
+            supports_images = model_supports_images(self.model)
 
             # Format system and user messages with image support check
             if system_msgs:
@@ -515,7 +546,7 @@ class LLM:
         try:
             # For ask_with_images, we always set supports_images to True because
             # this method should only be called with models that support images
-            if self.model not in MULTIMODAL_MODELS:
+            if not model_supports_images(self.model):
                 raise ValueError(
                     f"Model {self.model} does not support images. Use a model from {MULTIMODAL_MODELS}"
                 )
@@ -595,7 +626,11 @@ class LLM:
                 if not response.choices or not response.choices[0].message.content:
                     raise ValueError("Empty or invalid response from LLM")
 
-                self.update_token_count(response.usage.prompt_tokens)
+                if response.usage is not None:
+                    self.update_token_count(
+                        response.usage.prompt_tokens,
+                        response.usage.completion_tokens,
+                    )
                 return response.choices[0].message.content
 
             # Handle streaming request
@@ -678,7 +713,7 @@ class LLM:
                 raise ValueError(f"Invalid tool_choice: {tool_choice}")
 
             # Check if the model supports images
-            supports_images = self.model in MULTIMODAL_MODELS
+            supports_images = model_supports_images(self.model)
 
             # Format messages
             if system_msgs:

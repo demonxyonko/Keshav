@@ -1,3 +1,3 @@
 """
-OpenManus benchmark system for standardized agent evaluation.
+Keshav benchmark system for standardized agent evaluation.
 """

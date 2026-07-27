@@ -5,9 +5,9 @@ class ToolError(Exception):
         self.message = message
 
 
-class OpenManusError(Exception):
-    """Base exception for all OpenManus errors"""
+class KeshavError(Exception):
+    """Base exception for all Keshav errors."""
 
 
-class TokenLimitExceeded(OpenManusError):
-    """Exception raised when the token limit is exceeded"""
+class TokenLimitExceeded(KeshavError):
+    """Exception raised when the token limit is exceeded."""

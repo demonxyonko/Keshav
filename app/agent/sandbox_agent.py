@@ -8,7 +8,7 @@ from app.config import config
 from app.daytona.sandbox import create_sandbox, delete_sandbox
 from app.daytona.tool_base import SandboxToolsBase
 from app.logger import logger
-from app.prompt.manus import NEXT_STEP_PROMPT, SYSTEM_PROMPT
+from app.prompt.keshav import NEXT_STEP_PROMPT, SYSTEM_PROMPT
 from app.tool import Terminate, ToolCollection
 from app.tool.ask_human import AskHuman
 from app.tool.mcp import MCPClients, MCPClientTool
@@ -18,10 +18,10 @@ from app.tool.sandbox.sb_shell_tool import SandboxShellTool
 from app.tool.sandbox.sb_vision_tool import SandboxVisionTool
 
 
-class SandboxManus(ToolCallAgent):
+class SandboxKeshav(ToolCallAgent):
     """A versatile general-purpose agent with support for both local and MCP tools."""
 
-    name: str = "SandboxManus"
+    name: str = "SandboxKeshav"
     description: str = "A versatile agent that can solve various tasks using multiple sandbox-tools including MCP-based tools"
 
     system_prompt: str = SYSTEM_PROMPT.format(directory=config.workspace_root)
@@ -55,14 +55,14 @@ class SandboxManus(ToolCallAgent):
     sandbox_link: Optional[dict[str, dict[str, str]]] = Field(default_factory=dict)
 
     @model_validator(mode="after")
-    def initialize_helper(self) -> "SandboxManus":
+    def initialize_helper(self) -> "SandboxKeshav":
         """Initialize basic components synchronously."""
         self.browser_context_helper = BrowserContextHelper(self)
         return self
 
     @classmethod
-    async def create(cls, **kwargs) -> "SandboxManus":
-        """Factory method to create and properly initialize a Manus instance."""
+    async def create(cls, **kwargs) -> "SandboxKeshav":
+        """Factory method to create and properly initialize a sandbox agent instance."""
         instance = cls(**kwargs)
         await instance.initialize_mcp_servers()
         await instance.initialize_sandbox_tools()
@@ -186,7 +186,7 @@ class SandboxManus(ToolCallAgent):
             raise e
 
     async def cleanup(self):
-        """Clean up Manus agent resources."""
+        """Clean up sandbox agent resources."""
         if self.browser_context_helper:
             await self.browser_context_helper.cleanup_browser()
         # Disconnect from all MCP servers only if we were initialized

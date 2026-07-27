@@ -1,197 +1,414 @@
 <p align="center">
-  <img src="assets/logo.jpg" width="200"/>
+  <img src="assets/logo.jpg" width="190" alt="Keshav logo"/>
 </p>
 
-English | [中文](README_zh.md) | [한국어](README_ko.md) | [日本語](README_ja.md)
+<h1 align="center">🦚 Keshav</h1>
 
-[![GitHub stars](https://img.shields.io/github/stars/FoundationAgents/OpenManus?style=social)](https://github.com/FoundationAgents/OpenManus/stargazers)
-&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &ensp;
-[![Discord Follow](https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat)](https://discord.gg/DYn29wFk9z)
-[![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15186407.svg)](https://doi.org/10.5281/zenodo.15186407)
+<p align="center">
+  <strong>A local-first Windows AI assistant with chat, vision, documents, tools, and natural Live Mode voice.</strong>
+</p>
 
-# 🦚 Keshav
+<p align="center">
+  Private by default • Powered by Ollama • Hindi, English, and Hinglish voice support
+</p>
 
-Keshav is your personal AI companion inspired by the wisdom, playfulness, and calm nature of Lord Krishna.
-He can code, browse, automate tasks, solve problems, and chat naturally in both Hindi and English.
-Unlike a traditional assistant, Keshav feels like a knowledgeable friend—sometimes witty, sometimes teasing, but always ready to help.
+What is Keshav?
 
-Our team members [@Xinbin Liang](https://github.com/mannaandpoem) and [@Jinyu Xiang](https://github.com/XiangJinyu) (core authors), along with [@Zhaoyang Yu](https://github.com/MoshiQAQ), [@Jiayi Zhang](https://github.com/didiforgithub), and [@Sirui Hong](https://github.com/stellaHSR), we are from [@MetaGPT](https://github.com/geekan/MetaGPT). The prototype is launched within 3 hours and we are keeping building!
+Keshav is a desktop AI assistant designed to feel fast, useful, and natural.
 
-It's a simple implementation, so we welcome any suggestions, contributions, and feedback!
+It runs its main language and vision models locally through Ollama, keeps conversations on your computer, understands images and documents, and supports real-time voice conversations through ElevenLabs.
 
-Enjoy your own agent with OpenManus!
+Keshav is built for everyday use: asking questions, writing and reviewing code, understanding files, analyzing screenshots, planning tasks, and having natural Hindi, English, or Hinglish conversations.
 
-We're also excited to introduce [OpenManus-RL](https://github.com/OpenManus/OpenManus-RL), an open-source project dedicated to reinforcement learning (RL)- based (such as GRPO) tuning methods for LLM agents, developed collaboratively by researchers from UIUC and OpenManus.
+Highlights
 
-## Project Demo
+Local AI chat
 
-<video src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" data-canonical-src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px"></video>
+Runs through Ollama on your own computer
 
-## Installation
+Uses qwen3:8b for text conversations
 
-We provide two installation methods. Method 2 (using uv) is recommended for faster installation and better dependency management.
+Uses qwen3-vl:4b for image understanding
 
-### Method 1: Using conda
+Streams responses directly from Ollama
 
-1. Create a new conda environment:
+Keeps normal chat independent from cloud LLM providers
 
-```bash
-conda create -n open_manus python=3.12
-conda activate open_manus
-```
+Natural Live Mode
 
-2. Clone the repository:
+Realtime speech recognition with ElevenLabs Scribe
 
-```bash
-git clone https://github.com/FoundationAgents/OpenManus.git
-cd OpenManus
-```
+Hindi, English, and Hinglish language detection
 
-3. Install dependencies:
+Low-latency custom ElevenLabs voice responses
 
-```bash
-pip install -r requirements.txt
-```
+Short, conversational replies optimized for voice
 
-### Method 2: Using uv (Recommended)
+Natural phrase buffering to avoid broken-word pronunciation
 
-1. Install uv (A fast Python package installer and resolver):
+Images and documents
 
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+Keshav can work with:
 
-2. Clone the repository:
+Images: PNG, JPG, JPEG, WEBP, BMP, GIF
 
-```bash
-git clone https://github.com/FoundationAgents/OpenManus.git
-cd OpenManus
-```
+PDF files
 
-3. Create a new virtual environment and activate it:
+DOCX documents
 
-```bash
-uv venv --python 3.12
-source .venv/bin/activate  # On Unix/macOS
-# Or on Windows:
-# .venv\Scripts\activate
-```
+CSV files
 
-4. Install dependencies:
+XLSX and XLSM spreadsheets
 
-```bash
-uv pip install -r requirements.txt
-```
+PPTX presentations
 
-### Browser Automation Tool (Optional)
-```bash
-playwright install
-```
+Markdown, JSON, YAML, XML, HTML, TOML, INI, logs, scripts, and source-code files
 
-## Configuration
+Scanned or low-text PDF pages can be rendered and passed to the vision model for visual inspection.
 
-OpenManus requires configuration for the LLM APIs it uses. Follow these steps to set up your configuration:
+Conversation management
 
-1. Create a `config.toml` file in the `config` directory (you can copy from the example):
+Persistent chat history
 
-```bash
-cp config/config.example.toml config/config.toml
-```
+Separate conversations
 
-2. Edit `config/config.toml` to add your API keys and customize settings:
+Conversation search
 
-```toml
-# Global LLM configuration
+Rename and delete
+
+Export conversations
+
+Remember recent attachments for follow-up questions
+
+Dark and light themes
+
+Architecture
+
+Normal Chat
+User
+  ↓
+PySide6 Desktop UI
+  ↓
+Native Ollama API
+  ↓
+qwen3:8b / qwen3-vl:4b
+  ↓
+Streaming response
+
+Live Mode
+Microphone
+  ↓
+ElevenLabs Scribe Realtime
+  ↓
+Local Ollama
+  ↓
+ElevenLabs Streaming TTS
+  ↓
+Custom Keshav voice
+
+Requirements
+
+Windows 10 or Windows 11, 64-bit
+
+Python 3.12
+
+Ollama
+
+Microphone and speakers or headphones
+
+Internet connection for Live Mode
+
+ElevenLabs API key
+
+ElevenLabs Voice ID
+
+A dedicated GPU is helpful but not required. Response speed depends on the selected model and your computer hardware.
+
+Installation
+
+1. Open the project folder
+
+cd "path\to\Keshav"
+
+2. Create a Python 3.12 virtual environment
+
+py -3.12 -m venv .venv
+
+3. Activate it
+
+.\.venv\Scripts\Activate.ps1
+
+Confirm the Python version:
+
+python --version
+
+It should show Python 3.12.
+
+4. Upgrade installation tools
+
+python -m pip install --upgrade pip setuptools wheel
+
+5. Install dependencies
+
+python -m pip install -r requirements.txt
+
+Check the environment:
+
+python -m pip check
+
+Expected result:
+
+No broken requirements found.
+
+Ollama setup
+
+Install Ollama, then download the required models:
+
+ollama pull qwen3:8b
+ollama pull qwen3-vl:4b
+
+Confirm that they are available:
+
+ollama list
+
+Start Ollama when needed:
+
+ollama serve
+
+Model configuration
+
+Create or edit:
+
+config\config.toml
+
+Recommended configuration:
+
 [llm]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-max_tokens = 4096
+model = "qwen3:8b"
+base_url = "http://127.0.0.1:11434/v1"
+api_key = "ollama"
 temperature = 0.0
+max_tokens = 8192
 
-# Optional configuration for specific LLM models
 [llm.vision]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-```
+model = "qwen3-vl:4b"
+base_url = "http://127.0.0.1:11434/v1"
+api_key = "ollama"
+temperature = 0.0
+max_tokens = 8192
 
-## Quick Start
+ElevenLabs Live Mode setup
 
-One line for run OpenManus:
+Create a .env file in the project root:
 
-```bash
-python main.py
-```
+ELEVENLABS_API_KEY=your_api_key_here
+ELEVENLABS_VOICE_ID=your_voice_id_here
 
-Then input your idea via terminal!
+Important:
 
-For MCP tool version, you can run:
-```bash
-python run_mcp.py
-```
+Never upload .env to GitHub.
 
-For unstable multi-agent version, you also can run:
+Never paste your API key into screenshots or public issues.
 
-```bash
-python run_flow.py
-```
+Some Voice Library voices are unavailable through the API on free plans.
 
-### Custom Adding Multiple Agents
+Use a Voice Design voice or another voice that your account can access through the API.
 
-Currently, besides the general OpenManus Agent, we have also integrated the DataAnalysis Agent, which is suitable for data analysis and data visualization tasks. You can add this agent to `run_flow` in `config.toml`.
+Running Keshav
 
-```toml
-# Optional configuration for run-flow
-[runflow]
-use_data_analysis_agent = true     # Disabled by default, change to true to activate
-```
-In addition, you need to install the relevant dependencies to ensure the agent runs properly: [Detailed Installation Guide](app/tool/chart_visualization/README.md##Installation)
+Activate the environment:
 
-## How to contribute
+.\.venv\Scripts\Activate.ps1
 
-We welcome any friendly suggestions and helpful contributions! Just create issues or submit pull requests.
+Start the desktop app from the project root:
 
-Or contact @mannaandpoem via 📧email: mannaandpoem@gmail.com
+python -m ui.main_window
 
-**Note**: Before submitting a pull request, please use the pre-commit tool to check your changes. Run `pre-commit run --all-files` to execute the checks.
+Use the module command above instead of running ui\main_window.py directly. It ensures Python can correctly locate the app package.
 
-## Community Group
-Join our networking group on Feishu and share your experience with other developers!
+Using Keshav
 
-<div align="center" style="display: flex; gap: 20px;">
-    <img src="assets/community_group.jpg" alt="OpenManus 交流群" width="300" />
-</div>
+Text chat
 
-## Star History
+Type a message and press Enter or use the send button.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=FoundationAgents/OpenManus&type=Date)](https://star-history.com/#FoundationAgents/OpenManus&Date)
+Attachments
 
-## Sponsors
-Thanks to [PPIO](https://ppinfra.com/user/register?invited_by=OCPKCN&utm_source=github_openmanus&utm_medium=github_readme&utm_campaign=link) for computing source support.
-> PPIO: The most affordable and easily-integrated MaaS and GPU cloud solution.
+Use the attachment button to add images or supported documents. Keshav extracts readable text and sends visual content to the vision model when necessary.
+
+Live Mode
+
+Start Live Mode and speak naturally.
+
+Keshav will:
+
+Detect the end of your speech.
+
+Convert your voice to text.
+
+Generate a short response locally with Ollama.
+
+Speak the response using your selected ElevenLabs voice.
+
+Return to listening for the next turn.
+
+Privacy
+
+Keshav follows a local-first design.
+
+Processed locally
+
+Text generation
+
+Image understanding
+
+Document extraction
+
+Conversation history
+
+Attachment storage
+
+Most application logic
+
+Sent to ElevenLabs during Live Mode
+
+Microphone audio for speech recognition
+
+Assistant response text for voice synthesis
+
+Normal text chat does not require ElevenLabs.
+
+Project structure
+
+Keshav/
+├── app/
+│   ├── chat.py
+│   ├── chat_store.py
+│   ├── schema.py
+│   ├── tool/
+│   └── ...
+├── ui/
+│   └── main_window.py
+├── config/
+│   └── config.toml
+├── assets/
+│   └── logo.jpg
+├── .env
+├── requirements.txt
+├── LICENSE
+└── README.md
+
+Optional agent tools
+
+The repository contains tools for browser automation, shell commands, file editing, MCP integrations, and other agent workflows.
+
+Some tools may require additional setup, browser installation, or optional packages.
+
+Playwright browser installation:
+
+playwright install
+
+Crawl4AI is currently optional because older dependency combinations may attempt to build LiteLLM from source on Windows. The desktop chat and Live Mode do not require Crawl4AI.
+
+Troubleshooting
+
+ModuleNotFoundError: No module named 'app'
+
+Run Keshav from the project root using:
+
+python -m ui.main_window
+
+Ollama connection error
+
+Check that Ollama is running:
+
+ollama serve
+
+Then verify installed models:
+
+ollama list
+
+Live Mode does not hear your voice
+
+Check:
+
+Windows microphone permissions
+
+Default recording device
+
+Internet connection
+
+ElevenLabs API key permissions
+
+ElevenLabs usage limits
+
+Keshav does not speak
+
+Check:
+
+ELEVENLABS_VOICE_ID in .env
+
+Whether the selected voice supports API use
+
+Speaker or headphone output
+
+ElevenLabs account quota
+
+Syntax check
+
+python -m py_compile app\chat.py ui\main_window.py
+
+No output means the syntax check passed.
+
+Dependency check
+
+python -m pip check
+
+Expected result:
+
+No broken requirements found.
+
+Security
+
+Do not commit these files or directories:
+
+.env
+.env.backup
+.venv/
+.venv_voice/
+__pycache__/
+cache/
+models/
+
+If an API key is accidentally exposed, revoke it immediately and create a replacement.
+
+Do not bypass Windows security protections to load blocked native libraries. Use supported alternatives instead.
+
+Roadmap
+
+Planned improvements may include:
+
+Dedicated Agent Mode
+
+More local tools
+
+Better settings controls
+
+Packaged Windows installer
+
+Improved document analysis
+
+Optional offline speech recognition
+
+Safer tool permissions
+
+More voice customization
+
+License and attribution
+
+Keshav is distributed under the MIT License.
 
 
-## Acknowledgement
+Keshav's desktop interface, local Ollama chat pipeline, persistent conversation system, attachment handling, Live Mode, ElevenLabs speech integration, and related customizations were added or substantially modified for this project.
 
-Thanks to [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo), [browser-use](https://github.com/browser-use/browser-use) and [crawl4ai](https://github.com/unclecode/crawl4ai) for providing basic support for this project!
-
-Additionally, we are grateful to [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands) and [SWE-agent](https://github.com/SWE-agent/SWE-agent).
-
-We also thank stepfun(阶跃星辰) for supporting our Hugging Face demo space.
-
-OpenManus is built by contributors from MetaGPT. Huge thanks to this agent community!
-
-## Cite
-```bibtex
-@misc{openmanus2025,
-  author = {Xinbin Liang and Jinyu Xiang and Zhaoyang Yu and Jiayi Zhang and Sirui Hong and Sheng Fan and Xiao Tang and Bang Liu and Yuyu Luo and Chenglin Wu},
-  title = {OpenManus: An open-source framework for building general AI agents},
-  year = {2025},
-  publisher = {Zenodo},
-  doi = {10.5281/zenodo.15186407},
-  url = {https://doi.org/10.5281/zenodo.15186407},
-}
-```
+See LICENSE for full terms.
